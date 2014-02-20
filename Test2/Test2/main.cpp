@@ -1,22 +1,18 @@
 //
-//  main.m
-//  Test1
+//  main.cpp
+//  Test2
 //
 //  Created by Callum Muir on 20/02/2014.
 //  Copyright (c) 2014 Callum Muir. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#include <iostream>
 
 int main(int argc, const char * argv[])
 {
 
-    @autoreleasepool {
-        
-        // insert code here...
-        NSLog(@"Hello, World!");
-        
-    }
+    // insert code here...
+    std::cout << "Hello, World!\n";
     return 0;
 }
 

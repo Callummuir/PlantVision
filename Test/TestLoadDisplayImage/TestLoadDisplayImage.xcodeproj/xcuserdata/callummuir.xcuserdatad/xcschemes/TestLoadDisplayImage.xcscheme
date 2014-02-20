@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7B233BB018B60289004551E5"
-               BuildableName = "Test1"
-               BlueprintName = "Test1"
-               ReferencedContainer = "container:Test1.xcodeproj">
+               BlueprintIdentifier = "7B67EC0518B651D30065A99D"
+               BuildableName = "TestLoadDisplayImage"
+               BlueprintName = "TestLoadDisplayImage"
+               ReferencedContainer = "container:TestLoadDisplayImage.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7B233BB018B60289004551E5"
-            BuildableName = "Test1"
-            BlueprintName = "Test1"
-            ReferencedContainer = "container:Test1.xcodeproj">
+            BlueprintIdentifier = "7B67EC0518B651D30065A99D"
+            BuildableName = "TestLoadDisplayImage"
+            BlueprintName = "TestLoadDisplayImage"
+            ReferencedContainer = "container:TestLoadDisplayImage.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -51,10 +51,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7B233BB018B60289004551E5"
-            BuildableName = "Test1"
-            BlueprintName = "Test1"
-            ReferencedContainer = "container:Test1.xcodeproj">
+            BlueprintIdentifier = "7B67EC0518B651D30065A99D"
+            BuildableName = "TestLoadDisplayImage"
+            BlueprintName = "TestLoadDisplayImage"
+            ReferencedContainer = "container:TestLoadDisplayImage.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -69,10 +69,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7B233BB018B60289004551E5"
-            BuildableName = "Test1"
-            BlueprintName = "Test1"
-            ReferencedContainer = "container:Test1.xcodeproj">
+            BlueprintIdentifier = "7B67EC0518B651D30065A99D"
+            BuildableName = "TestLoadDisplayImage"
+            BlueprintName = "TestLoadDisplayImage"
+            ReferencedContainer = "container:TestLoadDisplayImage.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
