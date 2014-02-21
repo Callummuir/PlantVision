@@ -28,6 +28,14 @@
 		7B97B1E918B6618000B7CF91 /* ProjectCode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ProjectCode; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B97B1EC18B6618000B7CF91 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7B97B1EE18B6618000B7CF91 /* ProjectCode.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ProjectCode.1; sourceTree = "<group>"; };
+		7B97B1F618B66A8500B7CF91 /* plant1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = plant1.jpg; sourceTree = "<group>"; };
+		7B97B1F718B66A8500B7CF91 /* plant2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = plant2.jpg; sourceTree = "<group>"; };
+		7B97B1F818B66A8500B7CF91 /* plant3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plant3.png; sourceTree = "<group>"; };
+		7B97B1F918B66A8500B7CF91 /* plant4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = plant4.jpg; sourceTree = "<group>"; };
+		7B97B1FA18B66A8500B7CF91 /* plant5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = plant5.jpg; sourceTree = "<group>"; };
+		7B97B1FB18B66A8500B7CF91 /* plant6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = plant6.jpg; sourceTree = "<group>"; };
+		7B97B1FC18B66A8500B7CF91 /* plant7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = plant7.jpg; sourceTree = "<group>"; };
+		7B97B1FD18B66A8500B7CF91 /* plant8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = plant8.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +52,7 @@
 		7B97B1E018B6618000B7CF91 = {
 			isa = PBXGroup;
 			children = (
+				7B97B1F518B66A6200B7CF91 /* Images */,
 				7B97B1EB18B6618000B7CF91 /* ProjectCode */,
 				7B97B1EA18B6618000B7CF91 /* Products */,
 			);
@@ -64,6 +73,21 @@
 				7B97B1EE18B6618000B7CF91 /* ProjectCode.1 */,
 			);
 			path = ProjectCode;
+			sourceTree = "<group>";
+		};
+		7B97B1F518B66A6200B7CF91 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				7B97B1F618B66A8500B7CF91 /* plant1.jpg */,
+				7B97B1F718B66A8500B7CF91 /* plant2.jpg */,
+				7B97B1F818B66A8500B7CF91 /* plant3.png */,
+				7B97B1F918B66A8500B7CF91 /* plant4.jpg */,
+				7B97B1FA18B66A8500B7CF91 /* plant5.jpg */,
+				7B97B1FB18B66A8500B7CF91 /* plant6.jpg */,
+				7B97B1FC18B66A8500B7CF91 /* plant7.jpg */,
+				7B97B1FD18B66A8500B7CF91 /* plant8.jpg */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +219,17 @@
 		7B97B1F318B6618000B7CF91 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = (
+					"-lopencv_core",
+					"-lopencv_highgui",
+					"-lopencv_imgproc",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -202,6 +237,17 @@
 		7B97B1F418B6618000B7CF91 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = (
+					"-lopencv_core",
+					"-lopencv_highgui",
+					"-lopencv_imgproc",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
