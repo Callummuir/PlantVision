@@ -11,6 +11,16 @@
 		7B97B1EF18B6618000B7CF91 /* ProjectCode.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7B97B1EE18B6618000B7CF91 /* ProjectCode.1 */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7BB468F618B77BD900E7A0E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7BB468F218B77BD900E7A0E5 /* TestCode.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7BB468E618B77BD800E7A0E5;
+			remoteInfo = TestCode;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		7B97B1E718B6618000B7CF91 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -36,6 +46,7 @@
 		7B97B1FB18B66A8500B7CF91 /* plant6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = plant6.jpg; sourceTree = "<group>"; };
 		7B97B1FC18B66A8500B7CF91 /* plant7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = plant7.jpg; sourceTree = "<group>"; };
 		7B97B1FD18B66A8500B7CF91 /* plant8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = plant8.jpg; sourceTree = "<group>"; };
+		7BB468F218B77BD900E7A0E5 /* TestCode.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TestCode.xcodeproj; path = TestCode/TestCode.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +63,7 @@
 		7B97B1E018B6618000B7CF91 = {
 			isa = PBXGroup;
 			children = (
+				7BB468F218B77BD900E7A0E5 /* TestCode.xcodeproj */,
 				7B97B1F518B66A6200B7CF91 /* Images */,
 				7B97B1EB18B6618000B7CF91 /* ProjectCode */,
 				7B97B1EA18B6618000B7CF91 /* Products */,
@@ -88,6 +100,14 @@
 				7B97B1FD18B66A8500B7CF91 /* plant8.jpg */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		7BB468F318B77BD900E7A0E5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7BB468F718B77BD900E7A0E5 /* TestCode */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -129,12 +149,28 @@
 			mainGroup = 7B97B1E018B6618000B7CF91;
 			productRefGroup = 7B97B1EA18B6618000B7CF91 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7BB468F318B77BD900E7A0E5 /* Products */;
+					ProjectRef = 7BB468F218B77BD900E7A0E5 /* TestCode.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				7B97B1E818B6618000B7CF91 /* ProjectCode */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		7BB468F718B77BD900E7A0E5 /* TestCode */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = TestCode;
+			remoteRef = 7BB468F618B77BD900E7A0E5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7B97B1E518B6618000B7CF91 /* Sources */ = {
@@ -271,6 +307,7 @@
 				7B97B1F418B6618000B7CF91 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
