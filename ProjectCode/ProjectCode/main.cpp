@@ -33,15 +33,19 @@ int main( int argc, char** argv )
 
     
     namedWindow("image 1 Original", CV_WINDOW_AUTOSIZE);
-    namedWindow("image 1 gray", CV_WINDOW_AUTOSIZE);
+    namedWindow("image 1 Kmeans", CV_WINDOW_AUTOSIZE);
 
     cout << "~~~ THRESHOLD OPTIMISATION ~~~" << endl;
     
-    int t = thresholdOptimisation(image_threshold);
-    my_threshold(imageGray,image_threshold,t);
+    cout << "~~~ KMEANS ~~~" << endl;
+    Mat image_kmeans, image_kmeans_gray;
+    kmeans(image1,2,image_kmeans);
+    imshow("image 1 Kmeans", image_kmeans);
+    
+    cvtColor(image_kmeans, image_kmeans_gray, CV_RGB2GRAY);
+    
     
     imshow("image 1 Original", image1);
-	imshow("image 1 gray", imageGray);
     
 	waitKey();
     
