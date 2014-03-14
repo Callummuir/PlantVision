@@ -1,13 +1,43 @@
 import org.opencv.core.Core;
-import org.opencv.core.CvType;
+import java.awt.*;
+import javax.swing.*;
 import org.opencv.core.Mat;
+import org.opencv.highgui.Highgui;
 
-public class Hello
-{
-   public static void main( String[] args )
-   {
-      System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
-      Mat mat = Mat.eye( 3, 3, CvType.CV_8UC1 );
-      System.out.println( "mat = " + mat.dump() );
-   }
+/**
+ * simple load of image with opencv
+ * @author callummuir
+ *
+ */
+public class Hello extends JFrame{
+	/**
+	 * loads image in opencv
+	 * @param args
+	 */
+	public static void main(String[] args){
+		//This is necessary in all
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+
+		//Must be a file location
+	  	String imgStr = "src/img/plant1.jpg";
+	  	
+	  	// loads in the image at t he given location
+	  	Mat m = Highgui.imread("src/img/plant1.jpg",Highgui.CV_LOAD_IMAGE_COLOR);
+	  	//writes the image 
+	  	Highgui.imwrite(imgStr,m);
+	  	//frame to put image in
+	  	JFrame frame = new JFrame("plant1");
+
+	    // Inserts the image icon
+	    ImageIcon image = new ImageIcon(imgStr);
+	    frame.setSize(image.getIconWidth()+10,image.getIconHeight()+35);
+	    
+	    // Draw the Image data into the BufferedImage
+	    JLabel label1 = new JLabel(" ", image, JLabel.CENTER);
+	    frame.getContentPane().add(label1);
+	     
+	    frame.validate();
+	    frame.setVisible(true);
+  }
+    
 }
