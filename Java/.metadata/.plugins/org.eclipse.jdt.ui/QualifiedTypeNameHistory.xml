@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.swing.text.Document"/>
+<fullyQualifiedTypeName name="net.semanticmetadata.lire.imageanalysis.cedd.CEDDQuant"/>
+<fullyQualifiedTypeName name="net.semanticmetadata.lire.imageanalysis.CEDD"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="net.semanticmetadata.lire.utils.FileUtils"/>
+<fullyQualifiedTypeName name="net.semanticmetadata.lire.DocumentBuilder"/>
+<fullyQualifiedTypeName name="net.semanticmetadata.lire.DocumentBuilderFactory"/>
+<fullyQualifiedTypeName name="org.apache.lucene.index.IndexWriterConfig"/>
+<fullyQualifiedTypeName name="org.apache.lucene.analysis.core.WhitespaceAnalyzer"/>
+<fullyQualifiedTypeName name="org.apache.lucene.index.IndexWriter"/>
+<fullyQualifiedTypeName name="org.apache.lucene.store.FSDirectory"/>
+<fullyQualifiedTypeName name="net.semanticmetadata.lire.utils.LuceneUtils"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
+<fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
+<fullyQualifiedTypeName name="java.io.FileInputStream"/>
+<fullyQualifiedTypeName name="org.apache.lucene.document.Document"/>
+</qualifiedTypeNameHistroy>

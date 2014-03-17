@@ -1,0 +1,25 @@
+package desc;
+
+import java.io.File;
+
+import net.semanticmetadata.lire.imageanalysis.CEDD;
+
+public class ceddDiscriptor {
+	
+	public static void main(String[] args){
+		boolean passed = false;
+			String FileLoc = "src/img/";
+            File f = new File(FileLoc);
+            System.out.println("Indexing images in " + FileLoc);
+            if (f.exists() && f.isDirectory()){
+            	passed = true;
+            }
+            	
+		
+		
+		
+		
+		System.out.println("here");
+	}
+
+}

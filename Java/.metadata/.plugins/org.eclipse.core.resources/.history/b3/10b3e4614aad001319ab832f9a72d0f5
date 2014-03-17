@@ -1,0 +1,42 @@
+package desc;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import net.semanticmetadata.lire.DocumentBuilder;
+import net.semanticmetadata.lire.DocumentBuilderFactory;
+import net.semanticmetadata.lire.imageanalysis.CEDD;
+import net.semanticmetadata.lire.utils.FileUtils;
+
+public class ceddDiscriptor {
+	
+	public static void main(String[] args){
+		
+		boolean passed = false;
+		String FileLoc = "src/img/";
+        File f = new File(FileLoc);
+        System.out.println("Indexing images in " + FileLoc);
+        if (f.exists() && f.isDirectory()){
+            passed = true;
+        }
+            	
+        // Getting all images from a directory and its sub directories.
+        try {
+			ArrayList<String> images = FileUtils.getAllImages(new File(FileLoc), true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+ 
+        // Creating a CEDD document builder and indexing al files.
+        DocumentBuilder builder = DocumentBuilderFactory.getCEDDDocumentBuilder();
+        
+		
+
+		System.out.println("here");
+		
+		
+	}
+
+}

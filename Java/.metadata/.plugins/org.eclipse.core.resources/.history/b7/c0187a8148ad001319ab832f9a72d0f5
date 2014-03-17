@@ -1,0 +1,14 @@
+package desc;
+
+import net.semanticmetadata.lire.imageanalysis.CEDD;
+
+public class ceddDiscriptor {
+	
+	public static void main(String[] args){
+		
+		CEDD a = new CEDD();
+		
+		System.out.println("here");
+	}
+
+}
