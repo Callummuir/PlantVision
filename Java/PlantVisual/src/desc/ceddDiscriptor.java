@@ -1,3 +1,8 @@
+
+/**
+ * Indexes all images in a given file location 
+ * Not yet sure what indexing a file means
+ */
 package desc;
 
 import java.awt.image.BufferedImage;
@@ -15,6 +20,7 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.FSDirectory;
 
+import tmp.OpenCVTest;
 import net.semanticmetadata.lire.DocumentBuilder;
 import net.semanticmetadata.lire.DocumentBuilderFactory;
 import net.semanticmetadata.lire.imageanalysis.CEDD;
@@ -23,65 +29,64 @@ import net.semanticmetadata.lire.utils.LuceneUtils;
 
 public class ceddDiscriptor {
 	
-	public static void main(String[] args){
+	private static String FileLocation; 
+	private static File f;
+	private static DocumentBuilder builder;
+	private IndexWriter indexWriter = null;
+	
+	public ceddDiscriptor(String FileLoc){
+		FileLocation = FileLoc;
+		File f = new File(FileLocation);
+		// Creating a CEDD document builder and indexing all files.
+        builder = DocumentBuilderFactory.getCEDDDocumentBuilder();
+	}
+
+	public void IndexCedd(){
 		
-		boolean passed = false;
-		String FileLoc = "src/img/";
-        File f = new File(FileLoc);
-        System.out.println("Indexing images in " + FileLoc);
-        if (f.exists() && f.isDirectory()){
-            passed = true;
-        }
-            	
-        // Getting all images from a directory and its sub directories.
-        ArrayList<String> images = null;
-        try {
-			 images = FileUtils.getAllImages(new File(FileLoc), true);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
- 
-        // Creating a CEDD document builder and indexing al files.
-        DocumentBuilder builder = DocumentBuilderFactory.getCEDDDocumentBuilder();
+		OpenCVTest op = new OpenCVTest();
+		
+		System.out.println("Indexing images in " + FileLocation);
         
-        IndexWriterConfig conf = new IndexWriterConfig(LuceneUtils.LUCENE_VERSION,
-                new WhitespaceAnalyzer(LuceneUtils.LUCENE_VERSION));
-        IndexWriter iw = null;
+        // Getting all images from a directory and its sub directories.
+        ArrayList<String> imagePaths = null;
         try {
-			iw = new IndexWriter(FSDirectory.open(new File("index")), conf);
+        	imagePaths = FileUtils.getAllImages(new File(FileLocation), true);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.err.println("Image files not found");
+		}
+        
+        //Lucene IndexWriter
+        IndexWriterConfig conf = new IndexWriterConfig(LuceneUtils.LUCENE_VERSION, 
+        												new WhitespaceAnalyzer(LuceneUtils.LUCENE_VERSION));
+        try {
+        	indexWriter = new IndexWriter(FSDirectory.open(new File("index")), conf);
+        	System.out.println("created index");
+		} catch (IOException e) {
+			System.err.println("Could not infex files");
 		}
        
-        
-     // Iterating through images building the low level features
-        for (Iterator<String> it = images.iterator(); it.hasNext(); ) {
+        // Iterating through images building the low level features
+        for (Iterator<String> it = imagePaths.iterator(); it.hasNext(); ) {
             String imageFilePath = it.next();
             System.out.println("Indexing " + imageFilePath);
             try {
                 BufferedImage img = ImageIO.read(new FileInputStream(imageFilePath));
                 Document document = builder.createDocument(img, imageFilePath);
-                iw.addDocument(document);
+                op.showImage(img);
+                indexWriter.addDocument(document);
             } catch (Exception e) {
-                System.err.println("Error reading image or indexing it.");
-                e.printStackTrace();
+                System.err.println("Error indexing images.");
             }
         }
-        // closing the IndexWriter
+        
         try {
-			iw.close();
+        	indexWriter.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.err.println("Error closing image indexer.");
 		}
         System.out.println("Finished indexing.");
-        
-
-		System.out.println("here");
-		
 		
 	}
+
 
 }

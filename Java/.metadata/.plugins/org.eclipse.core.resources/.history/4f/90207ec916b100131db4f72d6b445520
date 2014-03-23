@@ -1,0 +1,18 @@
+package tmp;
+
+import org.opencv.core.Core;
+
+public class Run {
+
+	public static void main(String[] args){
+		//Start program
+		System.out.println("Program Start");
+		
+		//Load openCV library
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+	
+	
+	}
+	
+	
+}

@@ -1,9 +1,0 @@
-package desc;
-
-public class ceddDiscriptor {
-	
-	public static void main(String[] args){
-		System.out.println("here");
-	}
-
-}

@@ -1,0 +1,43 @@
+package tmp;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.highgui.Highgui;
+
+public class Run {
+
+	public static void main(String[] args){
+		//Start program
+		System.out.println("Program Start");
+		
+		//Load openCV library
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		//Must be a file location
+	  	String imgStr = "src/img/plant1.jpg";
+	  	
+	  	// loads in the image at t he given location
+	  	Mat m = Highgui.imread("src/img/plant1.jpg",Highgui.CV_LOAD_IMAGE_COLOR);
+	  	//writes the image 
+	  	Highgui.imwrite(imgStr,m);
+	  	//frame to put image in
+	  	JFrame frame = new JFrame("plant1");
+
+	    // Inserts the image icon
+	    ImageIcon image = new ImageIcon(imgStr);
+	    frame.setSize(image.getIconWidth()+10,image.getIconHeight()+35);
+	    
+	    // Draw the Image data into the BufferedImage
+	    JLabel label1 = new JLabel(" ", image, JLabel.CENTER);
+	    frame.getContentPane().add(label1);
+	     
+	    frame.validate();
+	    frame.setVisible(true);
+	
+	}
+	
+	
+}
