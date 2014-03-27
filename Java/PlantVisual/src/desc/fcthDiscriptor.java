@@ -1,0 +1,90 @@
+package desc;
+
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import javax.imageio.ImageIO;
+
+import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.store.FSDirectory;
+
+import tmp.OpenCVTest;
+import net.semanticmetadata.lire.DocumentBuilder;
+import net.semanticmetadata.lire.DocumentBuilderFactory;
+import net.semanticmetadata.lire.imageanalysis.CEDD;
+import net.semanticmetadata.lire.utils.FileUtils;
+import net.semanticmetadata.lire.utils.LuceneUtils;
+
+
+public class fcthDiscriptor {
+	
+	private static String FileLocation; 
+	private static File f;
+	private static DocumentBuilder builder;
+	private IndexWriter indexWriter = null;
+	
+	public fcthDiscriptor(String FileLoc){
+		FileLocation = FileLoc;
+		File f = new File(FileLocation);
+		// Creating a FCTH document builder and indexing all files.
+        builder = DocumentBuilderFactory.getFCTHDocumentBuilder();
+	}
+	
+	
+	public void indexFCTH(){
+		
+		System.out.println("Indexing images in " + FileLocation);
+        
+        // Getting all images from a directory and its sub directories.
+        ArrayList<String> imagePaths = null;
+        try {
+        	imagePaths = FileUtils.getAllImages(new File(FileLocation), true);
+		} catch (IOException e) {
+			System.err.println("Image files not found");
+		}
+        
+        //Lucene IndexWriter
+        IndexWriterConfig conf = new IndexWriterConfig(LuceneUtils.LUCENE_VERSION, 
+        												new WhitespaceAnalyzer(LuceneUtils.LUCENE_VERSION));
+        
+        try {
+        	indexWriter = new IndexWriter(FSDirectory.open(new File("FCTHINDEX")), conf);
+        	System.out.println("created index");
+		} catch (IOException e) {
+			System.err.println("Could not infex files");
+		}
+        
+        // Iterating through images building the low level features
+        for (Iterator<String> it = imagePaths.iterator(); it.hasNext(); ) {
+            String imageFilePath = it.next();
+            System.out.println("Indexing " + imageFilePath);
+            try {
+                BufferedImage img = ImageIO.read(new FileInputStream(imageFilePath));
+                Document document = builder.createDocument(img, imageFilePath);
+//                op.showImage(img);
+                indexWriter.addDocument(document);
+            } catch (Exception e) {
+                System.err.println("Error indexing images.");
+            }
+        }
+        
+        try {
+        	indexWriter.close();
+		} catch (IOException e) {
+			System.err.println("Error closing image indexer.");
+		}
+        System.out.println("Finished indexing.");
+	}
+}
+
+
+
+
