@@ -18,9 +18,9 @@ public class testFCTHDiscriptor {
 		String TestImageLoc = "src/img/";
 				
 		fcthDiscriptor FCTHDisc = new fcthDiscriptor(TestImageLoc);
-		FCTHDisc.indexFCTH();
-		fcthSearcher FCTHSearch = new fcthSearcher();
-		FCTHSearch.Search("src/img/plant1.jpg");
+		FCTHDisc.indexFCTH("FCTHINDEX");
+		fcthSearcher FCTHSearch = new fcthSearcher("src/img/plant1.jpg");
+		FCTHSearch.Search("FCTHINDEX");
 		
 	}
 

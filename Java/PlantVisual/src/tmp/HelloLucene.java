@@ -21,6 +21,11 @@ import org.apache.lucene.util.Version;
 
 import java.io.IOException;
 
+/**
+ * simple index code, play area, largley taken from elsewhere (thanks)
+ * @author callummuir
+ *
+ */
 public class HelloLucene {
   public static void main(String[] args) throws IOException, ParseException {
     // 0. Specify the analyzer for tokenizing text.

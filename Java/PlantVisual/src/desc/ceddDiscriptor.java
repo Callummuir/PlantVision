@@ -1,8 +1,3 @@
-
-/**
- * Indexes all images in a given file location 
- * Not yet sure what indexing a file means
- */
 package desc;
 
 import java.awt.image.BufferedImage;
@@ -27,6 +22,11 @@ import net.semanticmetadata.lire.imageanalysis.CEDD;
 import net.semanticmetadata.lire.utils.FileUtils;
 import net.semanticmetadata.lire.utils.LuceneUtils;
 
+/**
+ * Code for making the CEDD Descriptor and indexing the given images
+ * @author callummuir
+ *
+ */
 public class ceddDiscriptor {
 	
 	private static String FileLocation; 
@@ -34,59 +34,78 @@ public class ceddDiscriptor {
 	private static DocumentBuilder builder;
 	private IndexWriter indexWriter = null;
 	
+	/**
+	 * @param FileLoc location of the image files to be indexed
+	 */
 	public ceddDiscriptor(String FileLoc){
 		FileLocation = FileLoc;
 		File f = new File(FileLocation);
-		// Creating a CEDD document builder and indexing all files.
         builder = DocumentBuilderFactory.getCEDDDocumentBuilder();
 	}
-
-	public void IndexCedd(){
-		
-		OpenCVTest op = new OpenCVTest();
-		
-		System.out.println("Indexing images in " + FileLocation);
-        
-        // Getting all images from a directory and its sub directories.
+	
+	
+	/**
+	 * gets all files out of a directory
+	 * @param fileLoc directory of files
+	 * @return array list of files
+	 */
+	private ArrayList<String> getFilesFromDirectory(){
         ArrayList<String> imagePaths = null;
         try {
         	imagePaths = FileUtils.getAllImages(new File(FileLocation), true);
 		} catch (IOException e) {
-			System.err.println("Image files not found");
+			System.err.println("CEDD descriptor: Image files not found");
 		}
-        
-        //Lucene IndexWriter
+		return imagePaths;
+	}
+
+	
+	/**
+	 * Index the image files using the CEDD document builder, add to the CEDD index
+	 */
+	public void IndexCedd(String indexLoc){
+		System.out.println("Indexing CEDD descriptor");
+		System.out.println("Indexing images in " + FileLocation);
+		
+		//Get all files from sub-directory
+		ArrayList<String> imagePaths = getFilesFromDirectory();
+		  
+        //Create standard config file for the index writer 
         IndexWriterConfig conf = new IndexWriterConfig(LuceneUtils.LUCENE_VERSION, 
         												new WhitespaceAnalyzer(LuceneUtils.LUCENE_VERSION));
+        
         try {
-        	indexWriter = new IndexWriter(FSDirectory.open(new File("index")), conf);
-        	System.out.println("created index");
+        	//Note the filename "CEDDINDEX" is used to differentiate where the index is 
+        	indexWriter = new IndexWriter(FSDirectory.open(new File(indexLoc)), conf);
+        	System.out.println("created CEDD index");
 		} catch (IOException e) {
-			System.err.println("Could not infex files");
+			System.err.println("Could not create CEDD file indexer");
 		}
        
-        // Iterating through images building the low level features
+        //Iterate through the images in the directory, building the CEDD features
         for (Iterator<String> it = imagePaths.iterator(); it.hasNext(); ) {
             String imageFilePath = it.next();
             System.out.println("Indexing " + imageFilePath);
+            
             try {
-                BufferedImage img = ImageIO.read(new FileInputStream(imageFilePath));
+            	//load the image as a buffered image (works multiple features from a single image)
+            	BufferedImage img = ImageIO.read(new FileInputStream(imageFilePath));
+            	//create the CEDD document using the document factory, then add to the index
                 Document document = builder.createDocument(img, imageFilePath);
-                op.showImage(img);
                 indexWriter.addDocument(document);
             } catch (Exception e) {
                 System.err.println("Error indexing images.");
             }
         }
         
+        //Close the writer
         try {
         	indexWriter.close();
 		} catch (IOException e) {
-			System.err.println("Error closing image indexer.");
+			System.err.println("Error closing CEDD image indexer.");
 		}
-        System.out.println("Finished indexing.");
+        System.out.println("CEDD descriptor: Finished indexing.");
 		
 	}
-
 
 }

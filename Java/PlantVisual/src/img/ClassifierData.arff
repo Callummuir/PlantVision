@@ -1,0 +1,8 @@
+@RELATION CEDDFCTHDATA
+ 
+@ATTRIBUTE imgName string
+@ATTRIBUTE CEDDData NUMERIC
+@ATTRIBUTE FCTHData NUMERIC
+@ATTRIBUTE Classification {Healthy, unHealthy}
+ 
+@DATA

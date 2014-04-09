@@ -16,9 +16,9 @@ public class testCeddDiscriptor {
 		String TestImageLoc = "src/img/";
 				
 		ceddDiscriptor CEDDDisc = new ceddDiscriptor(TestImageLoc);
-		CEDDDisc.IndexCedd();
-		ceddSearcher CEDDSearch = new ceddSearcher();
-		CEDDSearch.Search("src/img/plant1.jpg");
+		CEDDDisc.IndexCedd("CEDDINDEX");
+		ceddSearcher CEDDSearch = new ceddSearcher("src/img/plant1.jpg");
+		CEDDSearch.Search("CEDDINDEX");
 	}
 	
 }
