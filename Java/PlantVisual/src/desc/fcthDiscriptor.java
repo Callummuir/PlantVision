@@ -75,7 +75,6 @@ public class fcthDiscriptor {
         												new WhitespaceAnalyzer(LuceneUtils.LUCENE_VERSION));
         
         try {
-        	//Note: the filename "FCTH" TODO chnage this to a variable
         	indexWriter = new IndexWriter(FSDirectory.open(new File(IndexFile)), conf);
         	System.out.println("created FCTH index");
 		} catch (IOException e) {

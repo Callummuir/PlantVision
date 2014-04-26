@@ -24,6 +24,7 @@ public class RandForest {
 		BufferedReader reader = null;
 		
 		try {
+			//Read in data from the .arff file
 			reader = new BufferedReader(new FileReader(fileLoc)); 
 			data = new Instances(reader);
 			reader.close();

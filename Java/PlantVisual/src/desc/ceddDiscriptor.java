@@ -39,7 +39,7 @@ public class ceddDiscriptor {
 	 */
 	public ceddDiscriptor(String FileLoc){
 		FileLocation = FileLoc;
-		File f = new File(FileLocation);
+		f = new File(FileLocation);
         builder = DocumentBuilderFactory.getCEDDDocumentBuilder();
 	}
 	
@@ -90,9 +90,11 @@ public class ceddDiscriptor {
             try {
             	//load the image as a buffered image (works multiple features from a single image)
             	BufferedImage img = ImageIO.read(new FileInputStream(imageFilePath));
+            
             	//create the CEDD document using the document factory, then add to the index
                 Document document = builder.createDocument(img, imageFilePath);
                 indexWriter.addDocument(document);
+                
             } catch (Exception e) {
                 System.err.println("Error indexing images.");
             }

@@ -59,9 +59,11 @@ public class fcthSearcher {
 		
 		try {
 			//Opens the file already indexed as FCTH
-			//Note the //TODO chnage to a variable
 			ir = DirectoryReader.open(FSDirectory.open(new File(IndexFile)));
 			ImageSearcher searcher = ImageSearcherFactory.createFCTHImageSearcher(10);
+			//TODO this returns a sorted list of images that are 'similar' to the image
+			//What exactly does similar mena in this regard. so some investigating with real data, count numbers etc
+			//could be an actual issue
 		    ImageSearchHits hits = searcher.search(compImg, ir);
 		    //For each indexed image
 		    for (int i = 0; i < hits.length(); i++) {

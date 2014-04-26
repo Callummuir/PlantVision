@@ -58,8 +58,6 @@ public class ceddSearcher {
 		
 		try {
 			//Opens the files already indexed as CEDD
-			//Note the name "CEDDINDEX" relates to the file created whne making the index
-			//TODO make this a variable in both this and the indexer
 			ir = DirectoryReader.open(FSDirectory.open(new File(indexLoc)));
 			ImageSearcher searcher = ImageSearcherFactory.createCEDDImageSearcher(10);
 		    ImageSearchHits hits = searcher.search(compImg, ir);
