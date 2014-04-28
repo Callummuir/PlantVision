@@ -76,11 +76,25 @@ public class DescriptorBase {
 	
 	/**
 	 * extracts the classification from the file name
+	 * 
+	 * Classification will be u for unhealthy, h for healthy
+	 * 
 	 * @param data the file name
 	 * @return
 	 */
 	private String getClassification(String data){
-		return data.substring(0,1);
+		if(data.charAt(3) == 'h'){
+//			System.out.println("HEALTHYYYYY");
+			return "Healthy";
+		}
+		
+		if(data.charAt(3) == 'u'){
+//			System.out.println("ILLLLLLLLL");
+			return "unHealthy";
+		}
+		
+		
+		return null;
 	}
 	
 	
@@ -99,8 +113,8 @@ public class DescriptorBase {
          	BufferedImage img = ImageIO.read(new FileInputStream(imageFilePath));
          	
             //Assuming only need last 10 chars TODO this will ch
-         	//Input name of file unique
-         	String fileName = imageFilePath.substring((imageFilePath.length() - 10), imageFilePath.length());
+         	//Input name of file unique , removes the path and the .jpg from the file
+         	String fileName = imageFilePath.substring((imageFilePath.length() - 8), imageFilePath.length() - 4);
          	
          	//Fill the data object
          	DataIn.putImgName(fileName);
@@ -129,11 +143,11 @@ public class DescriptorBase {
 		ArrayList<classifiedData> DataOut = new ArrayList<classifiedData>();
 		classifiedData tmp = null;
 		
-		System.out.println("Indexing CEDD, retireving descriptor");
-		System.out.println("Indexing images in " + FileLocation);
 		
 		//Get all files from sub-directory
 		ArrayList<String> imagePaths = getFilesFromDirectory();
+		
+		System.out.println("Indexing images in " + FileLocation);
 		
         for (Iterator<String> it = imagePaths.iterator(); it.hasNext(); ) {
             String imageFilePath = it.next();
@@ -146,8 +160,70 @@ public class DescriptorBase {
         }
         return DataOut;
 		
+	}
+	
+	public ArrayList<classifiedData> GetTestDescriptors(){
+		ArrayList<classifiedData> DataOut = new ArrayList<classifiedData>();
+		classifiedData tmp = null;
 		
 		
+		//Get all files from sub-directory
+		ArrayList<String> imagePaths = getFilesFromDirectory();
+		
+		System.out.println("Indexing test images in " + FileLocation);
+		
+        for (Iterator<String> it = imagePaths.iterator(); it.hasNext(); ) {
+        	String imageFilePath = it.next();
+        	System.out.println("---------------- ----------------- " + imageFilePath);
+            
+        	tmp = classifytest(imageFilePath);
+        	DataOut.add(tmp);
+            
+            
+        }
+        return DataOut;
+	}
+	
+	
+	
+	private classifiedData classifytest(String imageFilePath){
+		classifiedData DataIn = new classifiedData();
+		
+		try {
+//			System.out.println("the file output: " + imageFilePath);
+         	
+			//load the image as a buffered image (works multiple features from a single image)
+         	BufferedImage img = ImageIO.read(new FileInputStream(imageFilePath));
+         	
+            //Assuming only need last 10 chars TODO this will ch
+         	//Input name of file unique , removes the path and the .jpg from the file
+         	String fileName = imageFilePath.substring((imageFilePath.length() - 8), imageFilePath.length() - 4);
+         	
+         	//Fill the data object
+         	DataIn.putCEDDData(GetCedd(img));
+            DataIn.putFCTHData(getFCTH(img));
+            DataIn.putClassification("?");
+            
+         } catch (Exception e) {
+             System.err.println("Error indexing images.");
+         }
+		
+		return DataIn;
+		
+		
+		
+	}
+	
+	public classifiedData getDescriptor(){
+		classifiedData testData = new classifiedData();
+		ArrayList<String> imagePath = getFilesFromDirectory();
+		String imageFilePath = imagePath.get(0);
+		System.out.println("HEREE: " + imageFilePath);
+		
+		testData = classifytest(imageFilePath);
+		
+		System.out.println("classified test data");
+		return testData;
 	}
 	
 	
