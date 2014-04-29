@@ -61,11 +61,11 @@ public class ceddDiscriptor {
 
 	
 	/**
-	 * Index the image files using the CEDD document builder, add to the CEDD index
+	 * Index the image files using the CEDD document builder, add to the CEDD index 
+	 * @param indexLoc location of files
 	 */
 	public void IndexCedd(String indexLoc){
-		System.out.println("Indexing CEDD descriptor");
-		System.out.println("Indexing images in " + FileLocation);
+		System.out.println("-----Indexing images for CEDD descriptor in: " + FileLocation + "-----");
 		
 		//Get all files from sub-directory
 		ArrayList<String> imagePaths = getFilesFromDirectory();

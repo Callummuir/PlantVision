@@ -70,8 +70,12 @@ public class Run {
 		Fileout(DataOut, FileOutLoc);
 	}
 	
+	/**
+	 * Classifies test data 
+	 * @param imgLoc location of images to be classifed
+	 * @param FileOutLoc location of data output file 
+	 */
 	private static void runDescriptorInTest(String imgLoc, String FileOutLoc){
-		System.out.println("Classifying Test Data good times!!");
 		ArrayList<classifiedData> DataOut = null;
 		DescriptorBase DBase = new DescriptorBase(imgLoc);
 		DataOut = DBase.GetTestDescriptors();
@@ -260,23 +264,22 @@ public class Run {
 		String testImageLoc = "src/testimg";
 		String testFileLoc = "src/testimg/TestData.arff";
 		
-		//run the CEDD and FCTH descriptors TODO tmp commented out 
+		//run the CEDD and FCTH descriptors TODO tmp commented out no longer needed
 //		runCEDDin(TestImageLoc);
 //		runFCTHin(TestImageLoc);
 		
 		//Train data
-		System.out.println("Single Classification");
 		runDescriptorIn(TrainImageLoc, TrainFileLoc  );
 		
 		
 		//Test data
-		System.out.println("Classify TestData");
-//		runDescriptorInTest(testImageLoc, testFileLoc);
+		runDescriptorInTest(testImageLoc, testFileLoc);
 		
 		
 		
 		RandForest RFClass = new RandForest();
 		RFClass.buildForrest(TrainFileLoc);
+		RFClass.crossFold10(TrainFileLoc);
 		
 		//System.out.println("Classifying Testdata");
 		RFClass.classifyTest(testFileLoc);

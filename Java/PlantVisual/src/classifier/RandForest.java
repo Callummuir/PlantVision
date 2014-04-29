@@ -25,7 +25,6 @@ public class RandForest {
 	Evaluation eval;
 	
 	
-	
 	/**
 	 * Builds the random forest from the given data file
 	 * @param fileLoc location of file for the input file for the classifier
@@ -34,91 +33,133 @@ public class RandForest {
 		Instances data = null;
 		BufferedReader reader = null;
 		
-		
-		System.out.println("Building forest");
+		System.out.println("---------------BUILDING Random Forest Classifier---------------");
 		
 		try {
 			//Read in data from the .arff file
 			reader = new BufferedReader(new FileReader(fileLoc)); 
-			
 			data = new Instances(reader);
-			
 			reader.close();
+			//reads in as .arff file 
+			
+			//Sets the class index (what to classify on) to the last value in the data file, this case {healthy,unhealthy}
 			data.setClassIndex(data.numAttributes() - 1);
 		} catch (IOException e) {
 			System.err.println("Buffered reader for Random Forest input could not be created: " + e);
 		}
 		
-		
 		try {
+			//Evaluator with the data, for use when classifying (Generally useful)
 			eval = new Evaluation(data);
-			Evaluation evalu = new Evaluation(data);
-			System.out.println("Crossfold10");
-			
-			evalu.crossValidateModel(rf, data, 10, new Random(1));
-			System.out.println("number correct: " +evalu.correct());
-			System.out.println("number incorrect: " +evalu.incorrect());
-			System.out.println("percent correct: " + evalu.pctCorrect());
-			System.out.println("percent incorrect: " + evalu.pctIncorrect());
-			System.out.println("percent NULL: " + evalu.pctUnclassified());
-			
-			System.out.println("Classifying data");
+			//Classify the random forest with the data 
+			System.out.println("-----Classifying data in Random Forest-----");
 			rf.buildClassifier(data);
 			
 		} catch (Exception e) {
 			System.err.println("Could not build Random forrest from data: " + e);
 		}
 		
-		
-		
+		System.out.println("---------------Random Forest Classifier BUILT---------------");
 		
 	}
-
-	public void classifyTest(String fileLoc){
 	
+	
+
+	
+	/**
+	 * Tests the data in crossfold10 validation //TODO reqord this comment ?
+	 * Must be done after the forrest is built
+	 * @param fileLoc location of data file
+	 */
+	public void crossFold10(String fileLoc){
 		Instances data = null;
 		BufferedReader reader = null;
 		
+		System.out.println("---------------Running Crossfold10 Testing Using Random Forrest On Data---------------");
 		
-		System.out.println("Reading in Test data ");
-		
+		// Need to build data to fit into evaluation
 		try {
 			//Read in data from the .arff file
 			reader = new BufferedReader(new FileReader(fileLoc)); 
-			
 			data = new Instances(reader);
-			
 			reader.close();
+			//Sets the class index (what to classify on) to the last value in the data file, this case {healthy,unhealthy}
 			data.setClassIndex(data.numAttributes() - 1);
 		} catch (IOException e) {
 			System.err.println("Buffered reader for Random Forest input could not be created: " + e);
 		}
 		
-		System.out.println("[[[[[[[[trying to classify]]]]]]]]pppp]]");
-		for(int i = 0 ; i < data.size(); i++){
-			try {
-				 eval.evaluateModelOnceAndRecordPrediction(rf, data.get(i));
-			} catch (Exception e1) {
-				System.err.println("Testing not working: " + e1);
-			}
-			
-		}
-		 
-		 ArrayList<Prediction> pre = eval.predictions();
-		 for(int i = 0 ; i < pre.size(); i++){
-			 System.out.println("Image: " + i + " is classified as: " + pre.get(i).predicted() + " weighted: " + pre.get(i).weight());
-
-			 
-		 }
-		 
-		 
-		 
-		 
 		
+		try {
+			//evaluate the data 
+			Evaluation evalu = new Evaluation(data);
+
+			int folds = 10;
+			//runs crossfold validation on the randomforest
+			evalu.crossValidateModel(rf, data, folds, new Random(1));
+			
+			//Output for crossfold 10 
+			System.out.println("CrossFold10 classification details: " + evalu.toClassDetailsString());
+			System.out.println("CrossFold10 Stats:" + evalu.toSummaryString(true));
+			System.out.println("Crossfold10 confusion matrix: " + evalu.toMatrixString());
+			
+			System.out.println("number of correctly classified images: " +evalu.correct());
+			System.out.println("number of incorrectly classified images: " +evalu.incorrect());
+			System.out.println("percent of images correctly classified: " + evalu.pctCorrect());
+			
+			
+		} catch (Exception e) {
+			System.err.println("Could not build Random forrest from data: " + e);
+		}
 		
 	}
 
+	/**
+	 * Classify the test data 
+	 * @param fileLoc location of test images 
+	 */
+	public void classifyTest(String fileLoc){
+		Instances data = null;
+		BufferedReader reader = null;
+		
+		System.out.println("Reading in Test data ");
+		try {
+			//Read in data from the .arff file
+			reader = new BufferedReader(new FileReader(fileLoc)); 
+			data = new Instances(reader);
+			reader.close();
+			//Sets the class index (what to classify on) to the last value in the data file, this case {healthy,unhealthy}
+			data.setClassIndex(data.numAttributes() - 1);
+		} catch (IOException e) {
+			System.err.println("Buffered reader for Random Forest input could not be created: " + e);
+		}
+		
+		System.out.println("----------Classifying Test Images----------");
+
+		Evaluation evalu = null;
+		try {
+			evalu = new Evaluation(data);
+			
+			//For each test image classify and record data 	
+			for(int i = 0 ; i < data.size(); i++){
+				//Evaluate it against the training data 
+				evalu.evaluateModelOnceAndRecordPrediction(rf, data.get(i));
+			}
+			
+			//Get predictions 
+			ArrayList<Prediction> pre = evalu.predictions();
+			
+			//for each prediction print it out //TODO the weighting is incorrect I think
+			for(int i = 0 ; i < pre.size(); i++){
+				System.out.println("Image: " + i + " is classified as: " + pre.get(i).predicted() + " weighted: " + pre.get(i).weight());
+			}
+		} catch (Exception e) {
+			System.err.println("Error testing images: " + e);
+		}
+	}
+}
+
 
 	
 	
-}
+

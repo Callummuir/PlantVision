@@ -84,12 +84,12 @@ public class DescriptorBase {
 	 */
 	private String getClassification(String data){
 		if(data.charAt(3) == 'h'){
-//			System.out.println("HEALTHYYYYY");
+
 			return "Healthy";
 		}
 		
 		if(data.charAt(3) == 'u'){
-//			System.out.println("ILLLLLLLLL");
+
 			return "unHealthy";
 		}
 		
@@ -147,7 +147,7 @@ public class DescriptorBase {
 		//Get all files from sub-directory
 		ArrayList<String> imagePaths = getFilesFromDirectory();
 		
-		System.out.println("Indexing images in " + FileLocation);
+		System.out.println("-----Indexing images in " + FileLocation + "-----");
 		
         for (Iterator<String> it = imagePaths.iterator(); it.hasNext(); ) {
             String imageFilePath = it.next();
@@ -174,8 +174,6 @@ public class DescriptorBase {
 		
         for (Iterator<String> it = imagePaths.iterator(); it.hasNext(); ) {
         	String imageFilePath = it.next();
-        	System.out.println("---------------- ----------------- " + imageFilePath);
-            
         	tmp = classifytest(imageFilePath);
         	DataOut.add(tmp);
             
@@ -185,12 +183,16 @@ public class DescriptorBase {
 	}
 	
 	
-	
+	/**
+	 * Classify test data 
+	 * @param imageFilePath path to image 
+	 * @return data object 
+	 */
 	private classifiedData classifytest(String imageFilePath){
 		classifiedData DataIn = new classifiedData();
 		
 		try {
-//			System.out.println("the file output: " + imageFilePath);
+			System.out.println("Building Descriptor of test image at: " + imageFilePath);
          	
 			//load the image as a buffered image (works multiple features from a single image)
          	BufferedImage img = ImageIO.read(new FileInputStream(imageFilePath));
