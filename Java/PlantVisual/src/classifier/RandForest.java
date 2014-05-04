@@ -54,6 +54,7 @@ public class RandForest {
 			//Classify the random forest with the data 
 			System.out.println("-----Classifying data in Random Forest-----");
 			rf.buildClassifier(data);
+
 			
 		} catch (Exception e) {
 			System.err.println("Could not build Random forrest from data: " + e);
@@ -106,10 +107,12 @@ public class RandForest {
 			System.out.println("number of correctly classified images: " +evalu.correct());
 			System.out.println("number of incorrectly classified images: " +evalu.incorrect());
 			System.out.println("percent of images correctly classified: " + evalu.pctCorrect());
+			System.out.println("Number of trees in random forest " + rf.getMaxDepth());
 			
 			
 		} catch (Exception e) {
 			System.err.println("Could not build Random forrest from data: " + e);
+			
 		}
 		
 	}
@@ -149,9 +152,17 @@ public class RandForest {
 			//Get predictions 
 			ArrayList<Prediction> pre = evalu.predictions();
 			
+			
+			
 			//for each prediction print it out //TODO the weighting is incorrect I think
 			for(int i = 0 ; i < pre.size(); i++){
-				System.out.println("Image: " + i + " is classified as: " + pre.get(i).predicted() + " weighted: " + pre.get(i).weight());
+				if(pre.get(i).predicted() == 0){
+					System.out.println("Image: " + i + " is classified as: HEALTHY weighted: " + pre.get(i).weight());	
+				}
+				
+				else{
+					System.out.println("Image: " + i + " is classified as: UNhealthy weighted: " + pre.get(i).weight());	
+				}
 			}
 		} catch (Exception e) {
 			System.err.println("Error testing images: " + e);

@@ -186,7 +186,7 @@ public class DescriptorBase {
 	/**
 	 * Classify test data 
 	 * @param imageFilePath path to image 
-	 * @return data object 
+	 * @return data object with image descriptor data
 	 */
 	private classifiedData classifytest(String imageFilePath){
 		classifiedData DataIn = new classifiedData();
@@ -197,7 +197,7 @@ public class DescriptorBase {
 			//load the image as a buffered image (works multiple features from a single image)
          	BufferedImage img = ImageIO.read(new FileInputStream(imageFilePath));
          	
-            //Assuming only need last 10 chars TODO this will ch
+            //Assuming only need last 8 chars //TODO this may change later
          	//Input name of file unique , removes the path and the .jpg from the file
          	String fileName = imageFilePath.substring((imageFilePath.length() - 8), imageFilePath.length() - 4);
          	
