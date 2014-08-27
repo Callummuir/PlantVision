@@ -1,7 +1,0 @@
-C:\Users\Savvash\Desktop\FCTH\FCTH\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Savvash\Desktop\FCTH\FCTH\obj\Debug\FCTH.Properties.Resources.resources
-C:\Users\Savvash\Desktop\FCTH\FCTH\obj\Debug\FCTH-Descriptor.csproj.GenerateResource.Cache
-C:\Users\Savvash\Desktop\FCTH\FCTH\bin\Debug\FCTH.dll
-C:\Users\Savvash\Desktop\FCTH\FCTH\bin\Debug\FCTH.pdb
-C:\Users\Savvash\Desktop\FCTH\FCTH\obj\Debug\FCTH.dll
-C:\Users\Savvash\Desktop\FCTH\FCTH\obj\Debug\FCTH.pdb
