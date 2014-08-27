@@ -76,3 +76,5 @@ Java/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/PlantVis/
 Java/.metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/PlantVis/2014/3/11/refactorings.index
 Java/PlantVis/.project
 Java/PlantVis/bin/Hello.class
+BorrowedCode/*
+ProjectCode/*
