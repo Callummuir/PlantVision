@@ -31,7 +31,6 @@ public class DescriptorBase {
 	public DescriptorBase(String FileLoc){
 		FileLocation = FileLoc;
 		f = new File(FileLocation);
-      
 	}
 	
 	/**
@@ -58,8 +57,6 @@ public class DescriptorBase {
 	private double[] GetCedd(BufferedImage img){
 		CEDD ceddDescriptor = new CEDD();
 		ceddDescriptor.extract(img);
-		
-		
 		return ceddDescriptor.getDoubleHistogram();
 	}
 	
@@ -76,8 +73,7 @@ public class DescriptorBase {
 	
 	/**
 	 * extracts the classification from the file name
-	 * 
-	 * Classification will be u for unhealthy, h for healthy
+	 * Classification will be 'u' for unhealthy, 'h' for healthy
 	 * 
 	 * @param data the file name
 	 * @return
@@ -92,8 +88,6 @@ public class DescriptorBase {
 
 			return "unHealthy";
 		}
-		
-		
 		return null;
 	}
 	
@@ -112,7 +106,8 @@ public class DescriptorBase {
 			//load the image as a buffered image (works multiple features from a single image)
          	BufferedImage img = ImageIO.read(new FileInputStream(imageFilePath));
          	
-            //Assuming only need last 10 chars TODO this will ch
+         	//This is for readng out the file name and the classification from the image file name
+            //Assuming only need last 10 chars
          	//Input name of file unique , removes the path and the .jpg from the file
          	String fileName = imageFilePath.substring((imageFilePath.length() - 8), imageFilePath.length() - 4);
          	
@@ -143,7 +138,6 @@ public class DescriptorBase {
 		ArrayList<classifiedData> DataOut = new ArrayList<classifiedData>();
 		classifiedData tmp = null;
 		
-		
 		//Get all files from sub-directory
 		ArrayList<String> imagePaths = getFilesFromDirectory();
 		
@@ -159,13 +153,12 @@ public class DescriptorBase {
             
         }
         return DataOut;
-		
 	}
+	
 	
 	public ArrayList<classifiedData> GetTestDescriptors(){
 		ArrayList<classifiedData> DataOut = new ArrayList<classifiedData>();
 		classifiedData tmp = null;
-		
 		
 		//Get all files from sub-directory
 		ArrayList<String> imagePaths = getFilesFromDirectory();
@@ -176,8 +169,6 @@ public class DescriptorBase {
         	String imageFilePath = it.next();
         	tmp = classifytest(imageFilePath);
         	DataOut.add(tmp);
-            
-            
         }
         return DataOut;
 	}
@@ -197,7 +188,6 @@ public class DescriptorBase {
 			//load the image as a buffered image (works multiple features from a single image)
          	BufferedImage img = ImageIO.read(new FileInputStream(imageFilePath));
          	
-            //Assuming only need last 8 chars //TODO this may change later
          	//Input name of file unique , removes the path and the .jpg from the file
          	String fileName = imageFilePath.substring((imageFilePath.length() - 8), imageFilePath.length() - 4);
          	
@@ -211,20 +201,20 @@ public class DescriptorBase {
          }
 		
 		return DataIn;
-		
-		
-		
 	}
 	
+	/**
+	 * @return the descriptor for this image
+	 */
 	public classifiedData getDescriptor(){
 		classifiedData testData = new classifiedData();
 		ArrayList<String> imagePath = getFilesFromDirectory();
 		String imageFilePath = imagePath.get(0);
-		System.out.println("HEREE: " + imageFilePath);
+//		System.out.println("HEREE: " + imageFilePath);
 		
 		testData = classifytest(imageFilePath);
 		
-		System.out.println("classified test data");
+//		System.out.println("classified test data");
 		return testData;
 	}
 	

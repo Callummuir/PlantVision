@@ -15,7 +15,6 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.FSDirectory;
 
-import tmp.OpenCVTest;
 import net.semanticmetadata.lire.DocumentBuilder;
 import net.semanticmetadata.lire.DocumentBuilderFactory;
 import net.semanticmetadata.lire.imageanalysis.CEDD;
@@ -33,6 +32,7 @@ public class fcthDiscriptor {
 	private static File f;
 	private static DocumentBuilder builder;
 	private IndexWriter indexWriter = null;
+	
 	
 	/**
 	 * @param FileLoc The location of the image files to be indexed
@@ -106,7 +106,4 @@ public class fcthDiscriptor {
         System.out.println("FCTH descriptor: Finished indexing.");
 	}
 }
-
-
-
 

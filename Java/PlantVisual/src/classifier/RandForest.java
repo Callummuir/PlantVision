@@ -40,10 +40,10 @@ public class RandForest {
 			reader = new BufferedReader(new FileReader(fileLoc)); 
 			data = new Instances(reader);
 			reader.close();
-			//reads in as .arff file 
 			
 			//Sets the class index (what to classify on) to the last value in the data file, this case {healthy,unhealthy}
 			data.setClassIndex(data.numAttributes() - 1);
+			
 		} catch (IOException e) {
 			System.err.println("Buffered reader for Random Forest input could not be created: " + e);
 		}
@@ -53,6 +53,9 @@ public class RandForest {
 			eval = new Evaluation(data);
 			//Classify the random forest with the data 
 			System.out.println("-----Classifying data in Random Forest-----");
+//			Can set the number of trees in the random forest and the depth of these trees. The defaults work well though
+//			rf.setMaxDepth(20);
+//			rf.setNumTrees(1000);
 			rf.buildClassifier(data);
 
 			
@@ -61,15 +64,11 @@ public class RandForest {
 		}
 		
 		System.out.println("---------------Random Forest Classifier BUILT---------------");
-		
 	}
-	
-	
-
-	
+		
 	/**
-	 * Tests the data in crossfold10 validation //TODO reqord this comment ?
-	 * Must be done after the forrest is built
+	 * Tests the data in crossfold10 validation 
+	 * Must be done after the forest is built
 	 * @param fileLoc location of data file
 	 */
 	public void crossFold10(String fileLoc){
@@ -90,7 +89,6 @@ public class RandForest {
 			System.err.println("Buffered reader for Random Forest input could not be created: " + e);
 		}
 		
-		
 		try {
 			//evaluate the data 
 			Evaluation evalu = new Evaluation(data);
@@ -107,16 +105,17 @@ public class RandForest {
 			System.out.println("number of correctly classified images: " +evalu.correct());
 			System.out.println("number of incorrectly classified images: " +evalu.incorrect());
 			System.out.println("percent of images correctly classified: " + evalu.pctCorrect());
-			System.out.println("Number of trees in random forest " + rf.getMaxDepth());
 			
+			for(int i = 0; i < rf.getOptions().length; i++){
+				System.out.println("Maximum depth of trees " + rf.getOptions()[i]);
+			}
 			
 		} catch (Exception e) {
 			System.err.println("Could not build Random forrest from data: " + e);
-			
 		}
-		
 	}
 
+	
 	/**
 	 * Classify the test data 
 	 * @param fileLoc location of test images 
@@ -152,16 +151,14 @@ public class RandForest {
 			//Get predictions 
 			ArrayList<Prediction> pre = evalu.predictions();
 			
-			
-			
 			//for each prediction print it out //TODO the weighting is incorrect I think
 			for(int i = 0 ; i < pre.size(); i++){
 				if(pre.get(i).predicted() == 0){
-					System.out.println("Image: " + i + " is classified as: HEALTHY weighted: " + pre.get(i).weight());	
+					System.out.println("Image: " + i + " is classified as: HEALTHY");	
 				}
 				
 				else{
-					System.out.println("Image: " + i + " is classified as: UNhealthy weighted: " + pre.get(i).weight());	
+					System.out.println("Image: " + i + " is classified as: UNhealthy");	
 				}
 			}
 		} catch (Exception e) {
@@ -169,8 +166,3 @@ public class RandForest {
 		}
 	}
 }
-
-
-	
-	
-

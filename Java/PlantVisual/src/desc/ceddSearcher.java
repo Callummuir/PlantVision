@@ -70,7 +70,5 @@ public class ceddSearcher {
 		} catch (IOException e) {
 			System.err.println("Could not search CEDD descriptor");
 		}
-       
 	}
-
 }

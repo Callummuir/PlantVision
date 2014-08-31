@@ -13,28 +13,28 @@ public class classifiedData {
 	private String classification = null;
 	
 	/**
-	 * @return This image name
+	 * @return the name of this image
 	 */
 	public String getImgName(){
 		return imgName;
 	}
 	
 	/**
-	 * @return the value for the CEDD descriptor
+	 * @return the values for the CEDD descriptor
 	 */
 	public double[] getCEDDData(){
 		return CEDDData;
 	}
 	
 	/**
-	 * @return the value for the FCTH descriptor
+	 * @return the values for the FCTH descriptor
 	 */
 	public double[] getFCTHData(){
 		return FCTHData;
 	}
 	
 	/**
-	 * @return The classification of the image, healthy not healthy etc
+	 * @return The classification of the image, healthy or not healthy
 	 */
 	public String getClassification(){
 		return classification;

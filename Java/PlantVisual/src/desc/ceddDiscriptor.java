@@ -15,10 +15,8 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.FSDirectory;
 
-import tmp.OpenCVTest;
 import net.semanticmetadata.lire.DocumentBuilder;
 import net.semanticmetadata.lire.DocumentBuilderFactory;
-import net.semanticmetadata.lire.imageanalysis.CEDD;
 import net.semanticmetadata.lire.utils.FileUtils;
 import net.semanticmetadata.lire.utils.LuceneUtils;
 
@@ -106,8 +104,6 @@ public class ceddDiscriptor {
 		} catch (IOException e) {
 			System.err.println("Error closing CEDD image indexer.");
 		}
-        System.out.println("CEDD descriptor: Finished indexing.");
-		
+        System.out.println("CEDD descriptor: Finished indexing.");	
 	}
-
 }
