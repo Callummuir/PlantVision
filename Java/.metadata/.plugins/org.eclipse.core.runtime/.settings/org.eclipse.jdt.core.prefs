@@ -6,4 +6,4 @@ org.eclipse.jdt.core.compiler.compliance=1.7
 org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
 org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
 org.eclipse.jdt.core.compiler.source=1.7
-org.eclipse.jdt.core.userLibrary.openCV-2.4.7=<?xml version\="1.0" encoding\="UTF-8"?>\n<userlibrary systemlibrary\="false" version\="2">\n\t<archive path\="/usr/local/Cellar/opencv/2.4.7.1/share/OpenCV/java/opencv-247.jar">\n\t\t<attributes>\n\t\t\t<attribute name\="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value\="/usr/local/Cellar/opencv/2.4.7.1/share/OpenCV/java"/>\n\t\t</attributes>\n\t</archive>\n</userlibrary>\n
+org.eclipse.jdt.core.userLibrary.openCV-2.4.7=<?xml version\="1.0" encoding\="UTF-8"?>\n<userlibrary systemlibrary\="false" version\="2">\n\t<archive path\="/Users/callummuir/Documents/Code/Java/OpenCV/opencv-2.4.1.jar">\n\t\t<attributes>\n\t\t\t<attribute name\="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value\="/usr/local/Cellar/opencv/2.4.7.1/share/OpenCV/java"/>\n\t\t</attributes>\n\t</archive>\n</userlibrary>\n
